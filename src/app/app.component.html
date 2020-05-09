@@ -1,0 +1,133 @@
+<div class="container">
+
+    <div class="bg-info text-white text-center py-2 container-title shadow-sm container">
+        <h5>Register</h5>
+    </div>
+
+    <div class="container container-form shadow">
+        <form #userForm="ngForm" (submit)="log(userForm.value)">
+            <div class="form-group">
+                <label for="lastName">First Name</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">&#9786;</span>
+                    </div>
+                    <input ngModel #firstName="ngModel" name='firstName' type="text" id="firstName" class="form-control" required><br>
+                </div>
+                <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is required</div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">&#9786;</span>
+                    </div>
+                    <input ngModel #lastName="ngModel" name='lastName' type="text" id="lastName" class="form-control" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">Last Name is required</div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Email</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+                    <input ngModel pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" #email="ngModel" name='email' type="email" id="email" class="form-control" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                    <div *ngIf="email.errors.required">Email is required</div>
+                    <div *ngIf="email.errors.pattern">Should be a valid email account</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Password</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">-</span>
+                    </div>
+                    <input ngModel #password="ngModel" minlength="6" name='password' type="password" id="password" class="form-control" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+                    <div *ngIf="password.errors.required">Password is required</div>
+                    <div *ngIf="password.errors.minlength">Password should be at least 6 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Confirm Password</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">-</span>
+                    </div>
+                    <input ngModel #confirmPassword="ngModel" minlength="6" name='confirmPassword' type="password" id="confirmPassword" class="form-control" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="confirmPassword.touched && !confirmPassword.valid">
+                    <div *ngIf="confirmPassword.errors.required">Password Confirmation is required</div>
+                    <div *ngIf="confirmPassword.errors.minlength">Password should be at least 6 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Country of Location</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">-</span>
+                    </div>
+                    <input ngModel #country="ngModel" name='country' type="country" id="country" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Company Name</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">-</span>
+                    </div>
+                    <input ngModel #company="ngModel" name='company' type="company" id="company" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Company Website</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">-</span>
+                    </div>
+                    <input ngModel #companyWebsite="ngModel" name='companyWebsite' type="companyWebsite" id="companyWebsite" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Innovator Type</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">-</span>
+                    </div>
+                    <select class="custom-select form-control" ngModel #innovator="ngModel" name='innovator' type="innovator" id="innovator">
+                        <option>Technology</option>
+                        <option>Science</option>
+                        <option>Art</option>
+                      </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input ngModel type="checkbox" id="ageCheck" name="ageCheck" value="Checked" #ageCheck="ngModel" required>
+                <label id="checkboxLabel" for="vehicle1"> Age acknowledgment for innovation submission. Check to confirm that you are at least 18 years of age.</label><br>
+                <div>
+                    <div class="alert alert-danger" *ngIf="ageCheck.touched && !ageCheck.value">Age Verification is required</div>
+                </div>
+            </div>
+            <div>
+                <p>Please review our <a href="http://www.privacy-policy.com">Privacy Policy</a> to understand how we will use your information. </p>
+
+            </div>
+
+            <div class="text-center">
+                <button class="btn text-white btn-warning" type="submit" [disabled]="!userForm.valid">LET'S GO</button>
+            </div><br>
+            <div class="alert alert-warning text-center" *ngIf="userForm.touched && !userForm.valid">Please fill all the fields and age verification to proceed</div>
+
+            <div class="alert alert-success text-center" *ngIf="userForm.submitted">Your information has been received.</div>
+
+
+        </form>
+
+    </div>
+
+
+</div>
