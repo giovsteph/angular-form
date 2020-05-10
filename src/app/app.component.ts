@@ -11,12 +11,4 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   log(x) {console.log(x);}
-  // firstName = '';
-  // lastName = '';
-  // email = '';
-  // password = '';
-  // confirmPassword = '';
-  // country = '';
-  // company = '';
-  // companyWebsite = '';
 }
